@@ -298,44 +298,68 @@ img { object-fit: cover; }
 .story-copy blockquote { margin-top: 1.4rem; padding-left: 0.9rem; border-left: 1px solid var(--mustard); font-family: "Cormorant Garamond", Georgia, serif; font-size: 1.35rem; font-style: italic; }
 
 .families { background: var(--ivory); }
-.family-grid { display: grid; gap: 2.75rem; }
+.family-grid {
+  display: grid; gap: 2rem;
+  width: min(100%, 36rem); margin: 0 auto;
+}
 .family-card {
-  max-width: 22rem; margin: 0 auto; padding: 2.4rem 1.5rem;
-  border: 1px solid color-mix(in srgb, var(--mustard) 22%, transparent);
-  background: color-mix(in srgb, var(--cream) 88%, #fff);
+  position: relative; overflow: hidden;
+  width: 100%; padding: 2.85rem 2rem 2.55rem;
+  border: 1px solid color-mix(in srgb, var(--mustard) 32%, transparent);
+  background:
+    linear-gradient(180deg, #fffdf9 0%, color-mix(in srgb, var(--cream) 92%, #fff) 100%);
+  box-shadow:
+    0 10px 36px color-mix(in srgb, var(--ink) 6%, transparent),
+    inset 0 1px 0 #ffffffcc;
   text-align: center;
 }
+.family-card-frame {
+  position: absolute; inset: 0.65rem;
+  border: 1px solid color-mix(in srgb, var(--mustard) 16%, transparent);
+  pointer-events: none;
+}
+.family-card-frame::before,
+.family-card-frame::after {
+  content: ""; position: absolute; width: 7px; height: 7px;
+  border: 1px solid color-mix(in srgb, var(--mustard) 55%, transparent);
+  transform: rotate(45deg);
+}
+.family-card-frame::before { top: -4px; left: 50%; margin-left: -3.5px; background: #fffdf9; }
+.family-card-frame::after { bottom: -4px; left: 50%; margin-left: -3.5px; background: var(--cream); }
+.family-card-label { margin-bottom: 0.15rem; letter-spacing: 0.24em; }
+.family-card-ornament { margin: 0.95rem auto 1.45rem; width: 6.5rem; }
 .family-name {
-  margin: 0.85rem 0 1.35rem;
+  margin: 0.55rem 0 0;
   font-family: "Cormorant Garamond", Georgia, serif;
-  font-size: clamp(1.85rem, 7vw, 2.35rem);
-  font-weight: 400; letter-spacing: 0.04em; line-height: 1.1;
+  font-size: clamp(2.05rem, 8.5vw, 2.75rem);
+  font-weight: 400; letter-spacing: 0.05em; line-height: 1.08;
 }
 .family-lineage {
-  display: grid; gap: 0.35rem;
+  display: grid; gap: 0.4rem;
   font-family: "Cormorant Garamond", Georgia, serif;
   color: var(--brown);
 }
 .family-relation {
+  margin-top: 0.15rem;
   font-size: 0.62rem; font-family: Outfit, system-ui, sans-serif;
   font-weight: 500; letter-spacing: 0.2em; text-transform: uppercase;
   color: var(--mustard);
 }
-.family-parent { font-size: clamp(1.15rem, 4.5vw, 1.45rem); line-height: 1.35; }
+.family-parent { font-size: clamp(1.2rem, 4.8vw, 1.55rem); line-height: 1.35; }
 .family-amp {
-  margin: 0.15rem 0; font-size: 1rem; font-style: italic; color: var(--mustard);
+  margin: 0.2rem 0; font-size: 1.05rem; font-style: italic; color: var(--mustard);
 }
 .family-sibling {
-  margin-top: 1.6rem; padding-top: 1.35rem;
-  border-top: 1px solid color-mix(in srgb, var(--mustard) 18%, transparent);
+  margin-top: 1.75rem; padding-top: 1.45rem;
+  border-top: 1px solid color-mix(in srgb, var(--mustard) 20%, transparent);
 }
 .family-sibling small {
-  display: block; margin-bottom: 0.35rem;
+  display: block; margin-bottom: 0.4rem;
   font-size: 0.6rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--mustard);
 }
 .family-sibling p {
   font-family: "Cormorant Garamond", Georgia, serif;
-  font-size: 1.25rem; color: var(--ink);
+  font-size: 1.3rem; color: var(--ink);
 }
 .story-malayalam {
   margin: 0.75rem 0 1rem;
@@ -401,7 +425,8 @@ footer { padding: 4.5rem 1.25rem 2.5rem; background: #14110e; color: var(--ivory
   }
   .story-portrait { flex: unset; max-width: none; aspect-ratio: 4/5; }
   .story-media { min-height: 34rem; }
-  .family-grid { grid-template-columns: 1fr 1fr; gap: 3rem; }
+  .family-grid { grid-template-columns: 1fr 1fr; gap: 2rem; width: min(100%, 56rem); }
+  .family-card { padding: 3rem 2.25rem 2.75rem; }
   .gallery-tile { flex-basis: 22rem; }
   .event-rail figure { flex-basis: 18rem; }
   .travel-card { flex-basis: 20rem; }

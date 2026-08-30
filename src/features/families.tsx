@@ -12,8 +12,10 @@ export function Families() {
       </header>
       <div className="family-grid">
         <article className="family-card" data-reveal>
-          <p className="label">The bride</p>
+          <span className="family-card-frame" aria-hidden="true" />
+          <p className="label family-card-label">The bride</p>
           <h3 className="family-name">{wedding.couple.bride}</h3>
+          <Ornament className="family-card-ornament" />
           <div className="family-lineage">
             <span className="family-relation">Daughter of</span>
             <span className="family-parent">{wedding.family.bride.father}</span>
@@ -28,8 +30,10 @@ export function Families() {
           </div>
         </article>
         <article className="family-card" data-reveal>
-          <p className="label">The groom</p>
+          <span className="family-card-frame" aria-hidden="true" />
+          <p className="label family-card-label">The groom</p>
           <h3 className="family-name">{wedding.couple.groom}</h3>
+          <Ornament className="family-card-ornament" />
           <div className="family-lineage">
             <span className="family-relation">Son of</span>
             <span className="family-parent">{wedding.family.groom.father}</span>
