@@ -1,22 +1,26 @@
 import type { Metadata } from "next";
+import { site } from "@/content/site";
+import { wedding } from "@/content/wedding";
 import "./globals.css";
 
-const siteUrl =
-  process.env.NEXT_PUBLIC_SITE_URL ??
-  (process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : "https://jinu-divyamol-wedding.vercel.app");
-
-const title = "Jinu & Divyamol — September 2, 2026";
-const description = "The wedding celebration of Jinu Albert and Divyamol K B.";
-
 export const metadata: Metadata = {
-  metadataBase: new URL(siteUrl),
-  title,
-  description,
+  metadataBase: new URL(site.url),
+  title: {
+    default: site.title,
+    template: `%s · ${site.name}`,
+  },
+  description: site.description,
+  applicationName: site.name,
+  keywords: [...site.keywords],
+  authors: [{ name: wedding.couple.groom }, { name: wedding.couple.bride }],
+  creator: site.name,
   openGraph: {
-    title,
-    description,
     type: "website",
-    locale: "en_US",
+    url: site.url,
+    siteName: site.name,
+    locale: "en_IN",
+    title: site.title,
+    description: site.description,
     images: [
       {
         url: "/images/og-preview.jpg",
@@ -28,9 +32,16 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title,
-    description,
+    title: site.title,
+    description: site.shortDescription,
     images: ["/images/og-preview.jpg"],
+  },
+  alternates: {
+    canonical: site.url,
+  },
+  robots: {
+    index: true,
+    follow: true,
   },
 };
 
