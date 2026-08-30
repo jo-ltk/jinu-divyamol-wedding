@@ -1,10 +1,9 @@
 "use client";
 
-import Image from "next/image";
 import { useState } from "react";
 import { HeadingReveal } from "@/components/heading-reveal";
 import { Ornament } from "@/components/ornament";
-import { images, wedding } from "@/content/wedding";
+import { wedding } from "@/content/wedding";
 
 type VenueDetails = {
   name: string;
@@ -21,18 +20,10 @@ type ScheduleEvent = {
   date: string;
   event: string;
   note: string;
-  venue?: VenueDetails;
-  photos?: typeof images.registration;
+  venue: VenueDetails;
 };
 
-const scheduleEvents: ScheduleEvent[] = [
-  {
-    tab: "Registration",
-    date: wedding.timeline[0].date,
-    event: wedding.timeline[0].event,
-    note: wedding.timeline[0].note,
-    photos: images.registration,
-  },
+const upcomingEvents: ScheduleEvent[] = [
   {
     tab: "Wedding",
     date: wedding.timeline[1].date,
@@ -89,8 +80,8 @@ function EventVenue({ venue }: { venue: VenueDetails }) {
 }
 
 export function Events() {
-  const [active, setActive] = useState(1);
-  const item = scheduleEvents[active];
+  const [active, setActive] = useState(0);
+  const item = upcomingEvents[active];
 
   return (
     <section className="events" id="wedding">
@@ -98,11 +89,11 @@ export function Events() {
         <p className="label">Days to remember</p>
         <HeadingReveal className="section-title">The Schedule</HeadingReveal>
         <Ornament />
-        <p className="lede">Dates, times, and venues for each day.</p>
+        <p className="lede">Dates, times, and venues for the wedding and celebration.</p>
       </header>
 
-      <div className="event-tabs" role="tablist" aria-label="Wedding schedule" data-reveal>
-        {scheduleEvents.map((entry, i) => (
+      <div className="event-tabs" role="tablist" aria-label="Upcoming events" data-reveal>
+        {upcomingEvents.map((entry, i) => (
           <button
             key={entry.tab}
             type="button"
@@ -129,21 +120,7 @@ export function Events() {
         <time>{item.date}</time>
         <h3>{item.event}</h3>
         <p className="event-note">{item.note}</p>
-
-        {item.venue ? <EventVenue venue={item.venue} /> : null}
-
-        {item.photos ? (
-          <div className="event-photos">
-            <div className="event-rail">
-              {item.photos.map((photo) => (
-                <figure key={photo.src}>
-                  <Image src={photo.src} alt={photo.alt} fill sizes="82vw" />
-                </figure>
-              ))}
-            </div>
-            <p className="swipe-hint dark">Swipe to see the office and the day</p>
-          </div>
-        ) : null}
+        <EventVenue venue={item.venue} />
       </article>
 
       <div className="event-travel" data-reveal>
