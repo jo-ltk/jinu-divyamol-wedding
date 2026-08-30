@@ -99,7 +99,8 @@ export const images = {
     couple("/images/story/03.jpg", "Jinu and Divyamol in an affectionate embrace"),
   ],
   registration: [
-    couple("/images/registration/office.jpg", "Jinu and Divyamol exchanging garlands at the registration office"),
+    couple("/images/registration/01.jpg", "Jinu and Divyamol exchanging garlands at the registration office"),
+    couple("/images/registration/office.jpg", "Jinu and Divyamol at the registration office"),
     couple("/images/registration/together.jpg", "Jinu and Divyamol after registration"),
     couple("/images/registration/portrait.jpg", "Jinu and Divyamol on their registration day"),
     couple("/images/registration/walk.jpg", "Jinu and Divyamol walking after registration"),
