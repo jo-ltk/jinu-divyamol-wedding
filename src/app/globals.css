@@ -142,13 +142,15 @@ img { object-fit: cover; }
 .invite .malayalam { font-size: clamp(1.15rem, 4.4vw, 1.55rem); color: var(--ink); }
 .invite .verse-en { margin-top: 0.85rem; font-family: "Cormorant Garamond", Georgia, serif; font-size: 1.15rem; font-style: italic; color: var(--brown); }
 
-.events, .story-section, .families, .gallery { padding: 4.25rem 1.25rem; }
+.events, .registration, .story-section, .families, .gallery { padding: 4.25rem 1.25rem; }
+.registration { background: var(--ivory); }
+.registration-photos { max-width: 42rem; margin: 0 auto; }
 .events { background: var(--beige); }
 .event-tabs {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(2, 1fr);
   margin: 0 auto 1.5rem;
-  max-width: 28rem;
+  max-width: 22rem;
   border: 1px solid color-mix(in srgb, var(--mustard) 30%, transparent);
 }
 .event-tabs button {
@@ -294,7 +296,7 @@ footer { padding: 4.5rem 1.25rem 2.5rem; background: #14110e; color: var(--ivory
   .site-nav.is-scrolled { color: var(--ink); }
   .hero-copy { padding: 0 4vw 4.5rem; }
   .hero-ticks { right: 4vw; bottom: 4.5rem; }
-  .invite, .events, .story-section, .families, .gallery, .countdown-band { padding: 6.5rem 4vw; }
+  .invite, .events, .registration, .story-section, .families, .gallery, .countdown-band { padding: 6.5rem 4vw; }
   .story-block { grid-template-columns: 1.1fr 0.9fr; align-items: center; gap: 3.5rem; }
   .story-block-alt { grid-template-columns: 0.9fr 1.1fr; }
   .story-media { min-height: 34rem; }

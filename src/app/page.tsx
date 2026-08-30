@@ -6,6 +6,7 @@ import { Families } from "@/features/families";
 import { Gallery } from "@/features/gallery";
 import { Hero } from "@/features/hero";
 import { Invitation } from "@/features/invitation";
+import { Registration } from "@/features/registration";
 import { SiteFooter } from "@/features/site-footer";
 import { Story } from "@/features/story";
 
@@ -17,6 +18,7 @@ export default function Home() {
         <Hero />
         <CountdownBand />
         <Invitation />
+        <Registration />
         <Events />
         <Story />
         <Families />
