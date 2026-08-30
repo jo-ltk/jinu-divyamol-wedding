@@ -9,7 +9,6 @@ import { Invitation } from "@/features/invitation";
 import { SiteFooter } from "@/features/site-footer";
 import { Story } from "@/features/story";
 import { Travel } from "@/features/travel";
-import { Venues } from "@/features/venues";
 
 export default function Home() {
   return (
@@ -24,7 +23,6 @@ export default function Home() {
         <Families />
         <Gallery />
         <Travel />
-        <Venues />
       </main>
       <SiteFooter />
     </MotionProvider>
