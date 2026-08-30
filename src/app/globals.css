@@ -142,7 +142,7 @@ img { object-fit: cover; }
 .invite .malayalam { font-size: clamp(1.15rem, 4.4vw, 1.55rem); color: var(--ink); }
 .invite .verse-en { margin-top: 0.85rem; font-family: "Cormorant Garamond", Georgia, serif; font-size: 1.15rem; font-style: italic; color: var(--brown); }
 
-.events, .story-section, .families, .travel, .venues, .gallery { padding: 4.25rem 1.25rem; }
+.events, .story-section, .families, .travel, .gallery { padding: 4.25rem 1.25rem; }
 .events { background: var(--beige); }
 .events ol { margin: 0; padding: 0; list-style: none; }
 .events li { display: grid; grid-template-columns: 2.4rem 1fr; gap: 1rem; padding: 1.35rem 0; border-top: 1px solid color-mix(in srgb, var(--ink) 12%, transparent); }
@@ -150,6 +150,22 @@ img { object-fit: cover; }
 .events time { display: block; font-size: 0.78rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--brown); }
 .events strong { display: block; margin: 0.2rem 0 0.35rem; font-family: "Cormorant Garamond", Georgia, serif; font-size: 1.7rem; font-weight: 400; }
 .events p { font-size: 0.92rem; color: var(--brown); }
+.event-venue {
+  margin-top: 1.35rem;
+  background: var(--ivory);
+  overflow: hidden;
+}
+.event-venue-map { position: relative; height: 14rem; }
+.event-venue-map iframe { width: 100%; height: 100%; border: 0; }
+.event-venue-copy { padding: 1.6rem 1.25rem 2rem; }
+.event-venue-copy h3 {
+  margin: 0.5rem 0 1rem;
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: 1.7rem;
+  font-weight: 400;
+  line-height: 1.15;
+}
+.event-venue-copy p { margin-bottom: 0.8rem; color: var(--brown); font-size: 0.92rem; }
 .event-photos { margin-top: 2.4rem; }
 .event-photos .label { margin-bottom: 0.9rem; }
 .event-rail {
@@ -194,16 +210,6 @@ img { object-fit: cover; }
 .travel-grid p { color: var(--brown); }
 .text-link { display: inline-block; margin-top: 1.1rem; font-size: 0.68rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--mustard); border-bottom: 1px solid var(--mustard); padding-bottom: 0.15rem; }
 
-.venues { background: var(--beige); }
-.venue-tabs { display: grid; grid-template-columns: 1fr 1fr; margin: 0 auto 1.5rem; max-width: 22rem; border: 1px solid color-mix(in srgb, var(--mustard) 30%, transparent); }
-.venue-tabs button { padding: 0.85rem; font-size: 0.68rem; letter-spacing: 0.16em; text-transform: uppercase; }
-.venue-tabs .is-active { background: var(--ink); color: var(--ivory); }
-.venue-card { background: var(--ivory); overflow: hidden; }
-.venue-map { position: relative; height: 14rem; }
-.venue-map iframe { width: 100%; height: 100%; border: 0; }
-.venue-copy { padding: 1.6rem 1.25rem 2rem; }
-.venue-copy h3 { margin: 0.5rem 0 1rem; font-family: "Cormorant Garamond", Georgia, serif; font-size: 1.7rem; font-weight: 400; line-height: 1.15; }
-.venue-copy p { margin-bottom: 0.8rem; color: var(--brown); font-size: 0.92rem; }
 .button {
   display: inline-flex; margin-top: 0.6rem; padding: 0.8rem 1.1rem;
   border: 1px solid var(--ink); font-size: 0.66rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase;
@@ -233,7 +239,7 @@ footer { padding: 4.5rem 1.25rem 2.5rem; background: #14110e; color: var(--ivory
   .site-nav.is-scrolled { color: var(--ink); }
   .hero-copy { padding: 0 4vw 4.5rem; }
   .hero-ticks { right: 4vw; bottom: 4.5rem; }
-  .invite, .events, .story-section, .families, .travel, .venues, .gallery, .countdown-band { padding: 6.5rem 4vw; }
+  .invite, .events, .story-section, .families, .travel, .gallery, .countdown-band { padding: 6.5rem 4vw; }
   .story-block { grid-template-columns: 1.1fr 0.9fr; align-items: center; gap: 3.5rem; }
   .story-block-alt { grid-template-columns: 0.9fr 1.1fr; }
   .story-media { min-height: 34rem; }
@@ -241,8 +247,8 @@ footer { padding: 4.5rem 1.25rem 2.5rem; background: #14110e; color: var(--ivory
   .travel-grid { grid-template-columns: repeat(3, 1fr); }
   .gallery-tile { flex-basis: 22rem; }
   .event-rail figure { flex-basis: 18rem; }
-  .venue-card { display: grid; grid-template-columns: 1.15fr 0.85fr; }
-  .venue-map { height: auto; min-height: 22rem; }
+  .event-venue { display: grid; grid-template-columns: 1.15fr 0.85fr; }
+  .event-venue-map { height: auto; min-height: 22rem; }
   .footer-meta { grid-template-columns: repeat(3, 1fr); }
 }
 

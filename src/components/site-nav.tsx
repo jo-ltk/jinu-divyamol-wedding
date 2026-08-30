@@ -6,9 +6,8 @@ import { wedding } from "@/content/wedding";
 const links = [
   { href: "#home", label: "Home" },
   { href: "#story", label: "Story" },
-  { href: "#wedding", label: "Wedding" },
+  { href: "#wedding", label: "Schedule" },
   { href: "#gallery", label: "Gallery" },
-  { href: "#venues", label: "Venues" },
 ];
 
 export function SiteNav() {
