@@ -39,14 +39,11 @@ export function Story() {
         </div>
       </article>
 
-      <article className="story-block story-block-alt">
+      <article className="story-block story-block-alt story-block-text">
         <div className="story-copy" data-reveal>
           <p className="label">02 · A new chapter</p>
           <h3>The day it became official</h3>
           <p>{wedding.story.official}</p>
-        </div>
-        <div className="story-media" data-image-reveal>
-          <Image src={images.story[0].src} alt={images.story[0].alt} fill sizes="(max-width: 800px) 100vw, 55vw" data-parallax />
         </div>
       </article>
     </section>
