@@ -1,4 +1,7 @@
+"use client";
+
 import Image from "next/image";
+import { useState } from "react";
 import { HeadingReveal } from "@/components/heading-reveal";
 import { Ornament } from "@/components/ornament";
 import { images, wedding } from "@/content/wedding";
@@ -13,30 +16,58 @@ type VenueDetails = {
   embed: string;
 };
 
-const venuesByEvent: Record<string, VenueDetails> = {
-  "The Wedding": {
-    name: wedding.wedding.venue,
-    address: wedding.wedding.address,
-    day: wedding.wedding.day,
-    date: wedding.wedding.date,
-    time: wedding.wedding.time,
-    mapUrl: wedding.wedding.directions,
-    embed: wedding.wedding.embed,
-  },
-  "The Celebration": {
-    name: wedding.reception.venue,
-    address: wedding.reception.address,
-    day: wedding.reception.day,
-    date: wedding.reception.date,
-    time: wedding.reception.time,
-    mapUrl: wedding.reception.directions,
-    embed: wedding.reception.embed,
-  },
+type ScheduleEvent = {
+  tab: string;
+  date: string;
+  event: string;
+  note: string;
+  venue?: VenueDetails;
+  photos?: typeof images.registration;
 };
+
+const scheduleEvents: ScheduleEvent[] = [
+  {
+    tab: "Registration",
+    date: wedding.timeline[0].date,
+    event: wedding.timeline[0].event,
+    note: wedding.timeline[0].note,
+    photos: images.registration,
+  },
+  {
+    tab: "Wedding",
+    date: wedding.timeline[1].date,
+    event: wedding.timeline[1].event,
+    note: wedding.timeline[1].note,
+    venue: {
+      name: wedding.wedding.venue,
+      address: wedding.wedding.address,
+      day: wedding.wedding.day,
+      date: wedding.wedding.date,
+      time: wedding.wedding.time,
+      mapUrl: wedding.wedding.directions,
+      embed: wedding.wedding.embed,
+    },
+  },
+  {
+    tab: "Celebration",
+    date: wedding.timeline[2].date,
+    event: wedding.timeline[2].event,
+    note: wedding.timeline[2].note,
+    venue: {
+      name: wedding.reception.venue,
+      address: wedding.reception.address,
+      day: wedding.reception.day,
+      date: wedding.reception.date,
+      time: wedding.reception.time,
+      mapUrl: wedding.reception.directions,
+      embed: wedding.reception.embed,
+    },
+  },
+];
 
 function EventVenue({ venue }: { venue: VenueDetails }) {
   return (
-    <div className="event-venue" data-reveal>
+    <div className="event-venue">
       <div className="event-venue-map">
         <iframe title={`${venue.name} map`} src={venue.embed} loading="lazy" referrerPolicy="no-referrer-when-downgrade" />
       </div>
@@ -58,6 +89,9 @@ function EventVenue({ venue }: { venue: VenueDetails }) {
 }
 
 export function Events() {
+  const [active, setActive] = useState(1);
+  const item = scheduleEvents[active];
+
   return (
     <section className="events" id="wedding">
       <header className="section-head" data-reveal>
@@ -66,34 +100,72 @@ export function Events() {
         <Ornament />
         <p className="lede">Dates, times, and venues for each day.</p>
       </header>
-      <ol>
-        {wedding.timeline.map((item, i) => {
-          const venue = venuesByEvent[item.event];
 
-          return (
-            <li key={item.event} data-reveal>
-              <span>0{i + 1}</span>
-              <div className="event-details">
-                <time>{item.date}</time>
-                <strong>{item.event}</strong>
-                <p>{item.note}</p>
-                {venue ? <EventVenue venue={venue} /> : null}
-              </div>
-            </li>
-          );
-        })}
-      </ol>
+      <div className="event-tabs" role="tablist" aria-label="Wedding schedule" data-reveal>
+        {scheduleEvents.map((entry, i) => (
+          <button
+            key={entry.tab}
+            type="button"
+            role="tab"
+            id={`event-tab-${i}`}
+            aria-controls={`event-panel-${i}`}
+            aria-selected={active === i}
+            className={active === i ? "is-active" : ""}
+            onClick={() => setActive(i)}
+          >
+            {entry.tab}
+          </button>
+        ))}
+      </div>
 
-      <div className="event-photos" data-reveal>
-        <p className="label">August 19, 2026 · Registration</p>
-        <div className="event-rail">
-          {images.registration.map((photo) => (
-            <figure key={photo.src}>
-              <Image src={photo.src} alt={photo.alt} fill sizes="82vw" />
-            </figure>
+      <article
+        className="event-panel"
+        role="tabpanel"
+        id={`event-panel-${active}`}
+        aria-labelledby={`event-tab-${active}`}
+        data-reveal
+      >
+        <p className="label">0{active + 1}</p>
+        <time>{item.date}</time>
+        <h3>{item.event}</h3>
+        <p className="event-note">{item.note}</p>
+
+        {item.venue ? <EventVenue venue={item.venue} /> : null}
+
+        {item.photos ? (
+          <div className="event-photos">
+            <div className="event-rail">
+              {item.photos.map((photo) => (
+                <figure key={photo.src}>
+                  <Image src={photo.src} alt={photo.alt} fill sizes="82vw" />
+                </figure>
+              ))}
+            </div>
+            <p className="swipe-hint dark">Swipe to see the office and the day</p>
+          </div>
+        ) : null}
+      </article>
+
+      <div className="event-travel" data-reveal>
+        <header className="event-travel-head">
+          <p className="label">Guest information</p>
+          <h3>How to reach</h3>
+        </header>
+        <div className="travel-rail" aria-label="Travel options">
+          {wedding.travel.map((mode, i) => (
+            <article key={mode.title} className="travel-card">
+              <span className="label">{mode.accent}</span>
+              <h4>
+                <em>0{i + 1}</em> {mode.title}
+              </h4>
+              <p>{mode.description}</p>
+              <a className="text-link" href={mode.href} target="_blank" rel="noreferrer">
+                {mode.cta}
+              </a>
+            </article>
           ))}
         </div>
-        <p className="swipe-hint dark">Swipe to see the office and the day</p>
+        <p className="swipe-hint dark">Swipe for travel options</p>
       </div>
     </section>
   );

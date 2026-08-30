@@ -8,7 +8,6 @@ import { Hero } from "@/features/hero";
 import { Invitation } from "@/features/invitation";
 import { SiteFooter } from "@/features/site-footer";
 import { Story } from "@/features/story";
-import { Travel } from "@/features/travel";
 
 export default function Home() {
   return (
@@ -22,7 +21,6 @@ export default function Home() {
         <Story />
         <Families />
         <Gallery />
-        <Travel />
       </main>
       <SiteFooter />
     </MotionProvider>

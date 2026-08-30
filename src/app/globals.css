@@ -142,14 +142,40 @@ img { object-fit: cover; }
 .invite .malayalam { font-size: clamp(1.15rem, 4.4vw, 1.55rem); color: var(--ink); }
 .invite .verse-en { margin-top: 0.85rem; font-family: "Cormorant Garamond", Georgia, serif; font-size: 1.15rem; font-style: italic; color: var(--brown); }
 
-.events, .story-section, .families, .travel, .gallery { padding: 4.25rem 1.25rem; }
+.events, .story-section, .families, .gallery { padding: 4.25rem 1.25rem; }
 .events { background: var(--beige); }
-.events ol { margin: 0; padding: 0; list-style: none; }
-.events li { display: grid; grid-template-columns: 2.4rem 1fr; gap: 1rem; padding: 1.35rem 0; border-top: 1px solid color-mix(in srgb, var(--ink) 12%, transparent); }
-.events li span { color: var(--mustard); font-size: 0.7rem; letter-spacing: 0.12em; }
-.events time { display: block; font-size: 0.78rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--brown); }
-.events strong { display: block; margin: 0.2rem 0 0.35rem; font-family: "Cormorant Garamond", Georgia, serif; font-size: 1.7rem; font-weight: 400; }
-.events p { font-size: 0.92rem; color: var(--brown); }
+.event-tabs {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  margin: 0 auto 1.5rem;
+  max-width: 28rem;
+  border: 1px solid color-mix(in srgb, var(--mustard) 30%, transparent);
+}
+.event-tabs button {
+  padding: 0.85rem 0.35rem;
+  font-size: 0.62rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  transition: background 160ms ease, color 160ms ease;
+}
+.event-tabs .is-active { background: var(--ink); color: var(--ivory); }
+.event-panel { max-width: 42rem; margin: 0 auto; }
+.event-panel time {
+  display: block;
+  margin-top: 0.35rem;
+  font-size: 0.78rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--brown);
+}
+.event-panel h3 {
+  margin: 0.35rem 0 0.5rem;
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: clamp(1.9rem, 8vw, 2.6rem);
+  font-weight: 400;
+  line-height: 1.05;
+}
+.event-note { font-size: 0.92rem; color: var(--brown); }
 .event-venue {
   margin-top: 1.35rem;
   background: var(--ivory);
@@ -166,13 +192,46 @@ img { object-fit: cover; }
   line-height: 1.15;
 }
 .event-venue-copy p { margin-bottom: 0.8rem; color: var(--brown); font-size: 0.92rem; }
-.event-photos { margin-top: 2.4rem; }
+.event-photos { margin-top: 1.5rem; }
 .event-photos .label { margin-bottom: 0.9rem; }
 .event-rail {
   display: flex; gap: 0.75rem; overflow-x: auto; scroll-snap-type: x mandatory;
   margin: 0 -1.25rem; padding: 0 1.25rem 0.4rem; -webkit-overflow-scrolling: touch;
 }
 .event-rail figure { position: relative; flex: 0 0 78vw; max-width: 20rem; aspect-ratio: 3/4; margin: 0; overflow: hidden; scroll-snap-align: center; }
+.event-travel { margin-top: 2.75rem; padding-top: 2.25rem; border-top: 1px solid color-mix(in srgb, var(--ink) 12%, transparent); }
+.event-travel-head { margin-bottom: 1.25rem; text-align: center; }
+.event-travel-head h3 {
+  margin-top: 0.55rem;
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: clamp(1.8rem, 7vw, 2.4rem);
+  font-weight: 400;
+  font-style: italic;
+}
+.travel-rail {
+  display: flex;
+  gap: 0.85rem;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  margin: 0 -1.25rem;
+  padding: 0 1.25rem 0.4rem;
+  -webkit-overflow-scrolling: touch;
+}
+.travel-card {
+  flex: 0 0 82vw;
+  max-width: 22rem;
+  padding: 1.35rem 1.15rem 1.5rem;
+  background: var(--ivory);
+  scroll-snap-align: center;
+}
+.travel-card h4 {
+  margin: 0.65rem 0 0.75rem;
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: 1.65rem;
+  font-weight: 400;
+}
+.travel-card h4 em { margin-right: 0.35rem; color: var(--mustard); font-style: italic; font-size: 0.95rem; }
+.travel-card p { color: var(--brown); font-size: 0.92rem; line-height: 1.6; }
 .swipe-hint.dark { color: var(--brown); opacity: 0.7; }
 
 .story-block { display: grid; gap: 1.5rem; margin-bottom: 3.2rem; }
@@ -204,10 +263,6 @@ img { object-fit: cover; }
 .lightbox-nav.next { right: 0.4rem; }
 .lightbox > p { position: absolute; bottom: 1.2rem; left: 0; right: 0; text-align: center; font-size: 0.7rem; letter-spacing: 0.16em; }
 
-.travel-grid { display: grid; gap: 1.75rem; }
-.travel-grid h3 { margin: 0.7rem 0 0.8rem; font-family: "Cormorant Garamond", Georgia, serif; font-size: 1.85rem; font-weight: 400; }
-.travel-grid h3 em { margin-right: 0.4rem; color: var(--mustard); font-style: italic; font-size: 1rem; }
-.travel-grid p { color: var(--brown); }
 .text-link { display: inline-block; margin-top: 1.1rem; font-size: 0.68rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--mustard); border-bottom: 1px solid var(--mustard); padding-bottom: 0.15rem; }
 
 .button {
@@ -239,14 +294,14 @@ footer { padding: 4.5rem 1.25rem 2.5rem; background: #14110e; color: var(--ivory
   .site-nav.is-scrolled { color: var(--ink); }
   .hero-copy { padding: 0 4vw 4.5rem; }
   .hero-ticks { right: 4vw; bottom: 4.5rem; }
-  .invite, .events, .story-section, .families, .travel, .gallery, .countdown-band { padding: 6.5rem 4vw; }
+  .invite, .events, .story-section, .families, .gallery, .countdown-band { padding: 6.5rem 4vw; }
   .story-block { grid-template-columns: 1.1fr 0.9fr; align-items: center; gap: 3.5rem; }
   .story-block-alt { grid-template-columns: 0.9fr 1.1fr; }
   .story-media { min-height: 34rem; }
-  .family-grid, .travel-grid { grid-template-columns: 1fr 1fr; gap: 3rem; }
-  .travel-grid { grid-template-columns: repeat(3, 1fr); }
+  .family-grid { grid-template-columns: 1fr 1fr; gap: 3rem; }
   .gallery-tile { flex-basis: 22rem; }
   .event-rail figure { flex-basis: 18rem; }
+  .travel-card { flex-basis: 20rem; }
   .event-venue { display: grid; grid-template-columns: 1.15fr 0.85fr; }
   .event-venue-map { height: auto; min-height: 22rem; }
   .footer-meta { grid-template-columns: repeat(3, 1fr); }
