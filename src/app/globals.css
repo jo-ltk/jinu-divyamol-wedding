@@ -8,6 +8,7 @@
   --beige: #efe6d4;
   --mustard: #c4a035;
   --mustard-soft: #d6b45a;
+  --sky-soft: #9ebfd4;
   --brown: #6b5a3d;
   --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
 }
@@ -70,13 +71,57 @@ img { object-fit: cover; }
 .nav-desktop a { opacity: 0.7; }
 .nav-desktop a.is-active { opacity: 1; color: var(--mustard); }
 .nav-dock {
-  position: fixed; z-index: 50; left: 0.75rem; right: 0.75rem; bottom: 0.75rem;
-  display: grid; grid-template-columns: repeat(5, 1fr);
-  padding: 0.55rem 0.35rem; background: #1c1915f2; color: #f7f3ea;
-  font-size: 0.58rem; letter-spacing: 0.08em; text-transform: uppercase; text-align: center;
+  position: fixed; z-index: 50;
+  left: max(0.75rem, env(safe-area-inset-left, 0px));
+  right: max(0.75rem, env(safe-area-inset-right, 0px));
+  bottom: max(0.75rem, env(safe-area-inset-bottom, 0px));
+  display: grid; grid-template-columns: repeat(4, 1fr); align-items: stretch;
+  padding: 0.4rem 0.55rem;
+  border: 1px solid #ffffff14;
+  border-radius: 999px;
+  background: #1c1915ee;
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  box-shadow: 0 6px 28px #00000045, inset 0 1px 0 #ffffff0d;
+  color: #f7f3ea;
+  font-size: clamp(0.52rem, 2.8vw, 0.58rem);
+  letter-spacing: 0.1em; text-transform: uppercase;
 }
-.nav-dock a { padding: 0.55rem 0.1rem; opacity: 0.55; }
-.nav-dock a.is-active { opacity: 1; color: var(--mustard-soft); }
+.nav-dock-link {
+  position: relative; z-index: 1;
+  display: flex; align-items: center; justify-content: center;
+  min-height: 2.75rem; padding: 0.45rem 0.2rem;
+  opacity: 0.55;
+  transition: opacity 200ms var(--ease-out), color 200ms ease, transform 160ms var(--ease-out);
+}
+.nav-dock-link:active { transform: scale(0.97); }
+.nav-dock-link.is-active { opacity: 1; color: var(--mustard-soft); }
+.nav-dock-link.is-active::after {
+  content: ""; position: absolute; bottom: 0.42rem; left: 50%;
+  width: 3px; height: 3px; border-radius: 50%;
+  background: var(--mustard-soft); opacity: 0.9;
+  transform: translateX(-50%);
+}
+.nav-sparkle-layer {
+  position: absolute; inset: 0; overflow: visible;
+  pointer-events: none; border-radius: inherit;
+}
+.nav-burst {
+  position: absolute; display: flex; align-items: center; gap: 3px;
+  pointer-events: none;
+}
+.nav-burst-line {
+  width: 14px; height: 1px;
+  background: color-mix(in srgb, var(--mustard-soft) 80%, transparent);
+}
+.nav-burst-diamond {
+  display: block; width: 4px; height: 4px;
+  border: 1px solid var(--mustard-soft);
+}
+.nav-particle {
+  position: absolute; width: 3px; height: 3px; border-radius: 50%;
+  pointer-events: none;
+}
 
 .hero { position: relative; display: grid; min-height: 100svh; place-items: end stretch; overflow: hidden; color: #fff; background: #0c0a08; }
 .hero-slide { position: absolute; inset: 0; opacity: 0; transition: opacity 1.35s cubic-bezier(0.23, 1, 0.32, 1); }
@@ -237,15 +282,65 @@ img { object-fit: cover; }
 .swipe-hint.dark { color: var(--brown); opacity: 0.7; }
 
 .story-block { display: grid; gap: 1.5rem; margin-bottom: 3.2rem; }
+.story-portraits {
+  display: flex; gap: 0.75rem; overflow-x: auto; scroll-snap-type: x mandatory;
+  margin: 0 -1.25rem 3rem; padding: 0 1.25rem 0.35rem; -webkit-overflow-scrolling: touch;
+}
+.story-portrait {
+  position: relative; flex: 0 0 72vw; max-width: 16rem; aspect-ratio: 3/4;
+  overflow: hidden; scroll-snap-align: center;
+  border: 1px solid color-mix(in srgb, var(--mustard) 16%, transparent);
+}
+.story-portrait img { object-position: center 22%; }
 .story-media { position: relative; min-height: 22rem; overflow: hidden; }
 .story-copy h3 { margin: 0.7rem 0 1rem; font-family: "Cormorant Garamond", Georgia, serif; font-size: clamp(2rem, 8vw, 3rem); font-weight: 400; line-height: 1.05; }
 .story-copy blockquote { margin-top: 1.4rem; padding-left: 0.9rem; border-left: 1px solid var(--mustard); font-family: "Cormorant Garamond", Georgia, serif; font-size: 1.35rem; font-style: italic; }
 
 .families { background: var(--ivory); }
-.family-grid { display: grid; gap: 2.5rem; text-align: center; }
-.family-grid h3 { margin: 0.7rem 0 0.5rem; font-family: "Cormorant Garamond", Georgia, serif; font-size: 2rem; font-weight: 400; }
-.parents { color: var(--brown); }
-.family-grid small { display: block; margin: 1.1rem 0 0.25rem; font-size: 0.6rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--mustard); }
+.family-grid { display: grid; gap: 2.75rem; }
+.family-card {
+  max-width: 22rem; margin: 0 auto; padding: 2.4rem 1.5rem;
+  border: 1px solid color-mix(in srgb, var(--mustard) 22%, transparent);
+  background: color-mix(in srgb, var(--cream) 88%, #fff);
+  text-align: center;
+}
+.family-name {
+  margin: 0.85rem 0 1.35rem;
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: clamp(1.85rem, 7vw, 2.35rem);
+  font-weight: 400; letter-spacing: 0.04em; line-height: 1.1;
+}
+.family-lineage {
+  display: grid; gap: 0.35rem;
+  font-family: "Cormorant Garamond", Georgia, serif;
+  color: var(--brown);
+}
+.family-relation {
+  font-size: 0.62rem; font-family: Outfit, system-ui, sans-serif;
+  font-weight: 500; letter-spacing: 0.2em; text-transform: uppercase;
+  color: var(--mustard);
+}
+.family-parent { font-size: clamp(1.15rem, 4.5vw, 1.45rem); line-height: 1.35; }
+.family-amp {
+  margin: 0.15rem 0; font-size: 1rem; font-style: italic; color: var(--mustard);
+}
+.family-sibling {
+  margin-top: 1.6rem; padding-top: 1.35rem;
+  border-top: 1px solid color-mix(in srgb, var(--mustard) 18%, transparent);
+}
+.family-sibling small {
+  display: block; margin-bottom: 0.35rem;
+  font-size: 0.6rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--mustard);
+}
+.family-sibling p {
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: 1.25rem; color: var(--ink);
+}
+.story-malayalam {
+  margin: 0.75rem 0 1rem;
+  font-size: clamp(1rem, 3.8vw, 1.2rem);
+  color: var(--brown);
+}
 
 .gallery { background: #161310; color: var(--ivory); }
 .gallery .lede { color: #d8cbb6; }
@@ -299,6 +394,11 @@ footer { padding: 4.5rem 1.25rem 2.5rem; background: #14110e; color: var(--ivory
   .invite, .events, .registration, .story-section, .families, .gallery, .countdown-band { padding: 6.5rem 4vw; }
   .story-block { grid-template-columns: 1.1fr 0.9fr; align-items: center; gap: 3.5rem; }
   .story-block-alt { grid-template-columns: 0.9fr 1.1fr; }
+  .story-portraits {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem;
+    margin: 0 0 4rem; padding: 0; overflow: visible;
+  }
+  .story-portrait { flex: unset; max-width: none; aspect-ratio: 4/5; }
   .story-media { min-height: 34rem; }
   .family-grid { grid-template-columns: 1fr 1fr; gap: 3rem; }
   .gallery-tile { flex-basis: 22rem; }

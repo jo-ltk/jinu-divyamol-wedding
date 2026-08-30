@@ -1,7 +1,9 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
+import gsap from "gsap";
 import { wedding } from "@/content/wedding";
+import { playNavSparkle } from "@/lib/nav-sparkle";
 
 const links = [
   { href: "#home", label: "Home" },
@@ -14,6 +16,8 @@ export function SiteNav() {
   const [hidden, setHidden] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [active, setActive] = useState("home");
+  const sparkleLayerRef = useRef<HTMLDivElement>(null);
+  const sparkleTimelineRef = useRef<gsap.core.Timeline | null>(null);
 
   useEffect(() => {
     let last = 0;
@@ -39,6 +43,20 @@ export function SiteNav() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
+  const handleNavInteract = useCallback((event: React.PointerEvent<HTMLAnchorElement>) => {
+    const layer = sparkleLayerRef.current;
+    if (!layer) return;
+
+    sparkleTimelineRef.current?.kill();
+    sparkleTimelineRef.current = playNavSparkle(layer, event.clientX, event.clientY) ?? null;
+  }, []);
+
+  useEffect(() => {
+    return () => {
+      sparkleTimelineRef.current?.kill();
+    };
+  }, []);
+
   return (
     <>
       <header className={`site-nav ${scrolled ? "is-scrolled" : ""} ${hidden ? "is-hidden" : ""}`}>
@@ -47,15 +65,25 @@ export function SiteNav() {
         </a>
         <nav className="nav-desktop" aria-label="Primary">
           {links.map((link) => (
-            <a key={link.href} href={link.href} className={active === link.href.slice(1) ? "is-active" : ""}>
+            <a
+              key={link.href}
+              href={link.href}
+              className={active === link.href.slice(1) ? "is-active" : ""}
+            >
               {link.label}
             </a>
           ))}
         </nav>
       </header>
       <nav className="nav-dock" aria-label="Mobile">
+        <div className="nav-sparkle-layer" ref={sparkleLayerRef} aria-hidden="true" />
         {links.map((link) => (
-          <a key={link.href} href={link.href} className={active === link.href.slice(1) ? "is-active" : ""}>
+          <a
+            key={link.href}
+            href={link.href}
+            className={`nav-dock-link ${active === link.href.slice(1) ? "is-active" : ""}`}
+            onPointerDown={handleNavInteract}
+          >
             {link.label}
           </a>
         ))}
