@@ -17,10 +17,9 @@ export function MotionProvider({ children }: { children: React.ReactNode }) {
 
       gsap
         .timeline({ defaults: { ease: "power3.out" } })
-        .fromTo(".hero-slide", { scale: 1.08, autoAlpha: 0 }, { scale: 1, autoAlpha: 1, duration: 1.6, ease: "power2.out" })
-        .fromTo(".hero-eyebrow", { y: 16, autoAlpha: 0 }, { y: 0, autoAlpha: 1, duration: 0.7 }, "-=0.9")
-        .fromTo(".hero-meta", { y: 14, autoAlpha: 0 }, { y: 0, autoAlpha: 1, duration: 0.7, stagger: 0.1 }, "-=0.35")
-        .fromTo(".hero-line", { scaleX: 0 }, { scaleX: 1, duration: 0.8 }, "-=0.5");
+        .fromTo(".hero-eyebrow", { y: 12, autoAlpha: 0 }, { y: 0, autoAlpha: 1, duration: 0.7 })
+        .fromTo(".hero-title", { y: 18, autoAlpha: 0 }, { y: 0, autoAlpha: 1, duration: 0.9 }, "-=0.4")
+        .fromTo(".hero-date, .hero-place, .hero-ticks", { y: 10, autoAlpha: 0 }, { y: 0, autoAlpha: 1, duration: 0.65, stagger: 0.08 }, "-=0.45");
 
       gsap.utils.toArray<HTMLElement>("[data-reveal]").forEach((el) => {
         gsap.fromTo(

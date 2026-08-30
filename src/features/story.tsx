@@ -1,7 +1,6 @@
 import Image from "next/image";
 import { HeadingReveal } from "@/components/heading-reveal";
 import { Ornament } from "@/components/ornament";
-import { PlaceholderBadge } from "@/components/placeholder-badge";
 import { images, wedding } from "@/content/wedding";
 
 export function Story() {
@@ -17,11 +16,10 @@ export function Story() {
       <article className="story-block">
         <div className="story-media" data-image-reveal>
           <Image src={images.story[0].src} alt={images.story[0].alt} fill sizes="(max-width: 800px) 100vw, 55vw" data-parallax />
-          <PlaceholderBadge />
         </div>
         <div className="story-copy" data-reveal>
-          <p className="label">01 · Her first visit</p>
-          <h3>Her first visit</h3>
+          <p className="label">01 · First meet</p>
+          <h3>First meet</h3>
           <p>{wedding.story.visit}</p>
           <blockquote>{wedding.story.visitQuote}</blockquote>
         </div>
@@ -35,7 +33,6 @@ export function Story() {
         </div>
         <div className="story-media" data-image-reveal>
           <Image src={images.story[1].src} alt={images.story[1].alt} fill sizes="(max-width: 800px) 100vw, 55vw" data-parallax />
-          <PlaceholderBadge />
         </div>
       </article>
     </section>

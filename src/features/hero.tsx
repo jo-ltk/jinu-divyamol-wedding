@@ -2,40 +2,49 @@
 
 import Image from "next/image";
 import { useEffect, useState } from "react";
-import { HeadingReveal } from "@/components/heading-reveal";
-import { Ornament } from "@/components/ornament";
 import { images, wedding } from "@/content/wedding";
+import { prefersReducedMotion } from "@/lib/motion";
 
 export function Hero() {
+  const slides = images.hero;
   const [index, setIndex] = useState(0);
 
   useEffect(() => {
-    const id = window.setInterval(() => setIndex((i) => (i + 1) % images.hero.length), 6500);
+    if (prefersReducedMotion() || slides.length < 2) return;
+    const id = window.setInterval(() => setIndex((i) => (i + 1) % slides.length), 5500);
     return () => window.clearInterval(id);
-  }, []);
+  }, [slides.length]);
 
   return (
     <section className="hero" id="home">
-      {images.hero.map((image, i) => (
+      {slides.map((image, i) => (
         <div key={image.src} className={`hero-slide ${i === index ? "is-active" : ""}`}>
-          <Image src={image.src} alt={image.alt} fill priority={i === 0} sizes="100vw" data-parallax />
+          <Image src={image.src} alt={image.alt} fill priority={i === 0} sizes="100vw" />
         </div>
       ))}
       <div className="hero-shade" />
+      <div className="hero-grain" aria-hidden="true" />
+
       <div className="hero-copy">
-        <p className="hero-eyebrow label">Together with their families</p>
-        <HeadingReveal as="h1" className="hero-title" delay={0.25} immediate>
-          {wedding.couple.display}
-        </HeadingReveal>
-        <div className="hero-line hero-meta" />
-        <Ornament className="hero-meta" />
-        <p className="hero-meta label">{wedding.wedding.date}</p>
-        <p className="hero-meta venue-line">{wedding.wedding.shortPlace}</p>
+        <p className="hero-eyebrow">The wedding of</p>
+        <h1 className="hero-title">
+          Jinu <em>&</em> Divyamol
+        </h1>
+        <p className="hero-date">{wedding.wedding.date}</p>
+        <p className="hero-place">{wedding.wedding.shortPlace}</p>
       </div>
-      <a className="hero-scroll" href="#invitation">
-        <span>Scroll</span>
-        <b>↓</b>
-      </a>
+
+      <div className="hero-ticks" aria-hidden="true">
+        {slides.map((_, i) => (
+          <button
+            key={i}
+            type="button"
+            className={i === index ? "is-active" : ""}
+            aria-label={`Photo ${i + 1}`}
+            onClick={() => setIndex(i)}
+          />
+        ))}
+      </div>
     </section>
   );
 }

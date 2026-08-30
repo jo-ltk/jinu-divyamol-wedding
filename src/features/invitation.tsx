@@ -15,8 +15,13 @@ export function Invitation() {
         </HeadingReveal>
         <Ornament />
         <blockquote>
-          <p>“{wedding.verse.english}”</p>
           <cite>{wedding.verse.reference}</cite>
+          <p className="malayalam" lang="ml">
+            {wedding.verse.malayalam}
+          </p>
+          <p className="verse-en">
+            10 {wedding.verse.english}
+          </p>
         </blockquote>
       </div>
     </section>

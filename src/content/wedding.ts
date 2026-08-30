@@ -1,4 +1,4 @@
-export type WeddingImage = { src: string; alt: string; role: "placeholder" };
+export type WeddingImage = { src: string; alt: string; role: "couple" };
 
 export const wedding = {
   couple: { groom: "Jinu Albert", bride: "Divyamol K B", display: "Jinu & Divyamol", monogram: "J & D" },
@@ -30,6 +30,7 @@ export const wedding = {
   },
   verse: {
     reference: "Song of Solomon 7:10",
+    malayalam: "ഞാൻ എന്റെ പ്രിയനു സ്വന്തം. എന്നെ മാത്രമാണ് അവൻ ആഗ്രഹിക്കുന്നത്.",
     english: "I am my dear one’s, And his desire is for me.",
   },
   invitation: {
@@ -80,30 +81,29 @@ export const wedding = {
   ],
 } as const;
 
-const image = (id: string, alt: string): WeddingImage => ({
-  src: `https://images.unsplash.com/${id}?auto=format&fit=crop&w=1600&q=85`,
-  alt: `Temporary placeholder: ${alt}`,
-  role: "placeholder",
-});
+const couple = (src: string, alt: string): WeddingImage => ({ src, alt, role: "couple" });
 
 export const images = {
   hero: [
-    image("photo-1519741497674-611481863552", "wedding table set in warm daylight"),
-    image("photo-1511285560929-80b456fea0bc", "editorial wedding details"),
+    couple("/images/hero/01.jpg", "Jinu and Divyamol by the waterfall"),
+    couple("/images/hero/02.jpg", "Jinu and Divyamol in the hills"),
+    couple("/images/hero/03.jpg", "Jinu and Divyamol at the falls"),
   ],
   story: [
-    image("photo-1522673607200-164d1b6ce486", "couple walking outdoors"),
-    image("photo-1519225421980-715cb0215aed", "wedding place setting"),
+    couple("/images/story/first-meet.jpg", "Jinu and Divyamol at their first meet"),
+    couple("/images/gallery/waterfall.jpg", "Jinu and Divyamol together"),
   ],
-  weddingVenue: image("photo-1519167758481-83f550bb49b3", "light-filled event architecture"),
-  reception: image("photo-1507525428034-b723cf961d3e", "waterside landscape"),
-  saveDate: image("photo-1507504031003-b417219a0fde", "pale coastline"),
+  registration: [
+    couple("/images/registration/office.jpg", "Jinu and Divyamol exchanging garlands at the registration office"),
+    couple("/images/registration/together.jpg", "Jinu and Divyamol after registration"),
+    couple("/images/registration/portrait.jpg", "Jinu and Divyamol on their registration day"),
+    couple("/images/registration/walk.jpg", "Jinu and Divyamol walking after registration"),
+  ],
   gallery: [
-    image("photo-1507504031003-b417219a0fde", "coastal horizon"),
-    image("photo-1511285560929-80b456fea0bc", "wedding details"),
-    image("photo-1464366400600-7168b8af9bc3", "floral table styling"),
-    image("photo-1522673607200-164d1b6ce486", "couple walking"),
-    image("photo-1519741497674-611481863552", "celebration table"),
-    image("photo-1519225421980-715cb0215aed", "place setting"),
+    couple("/images/gallery/hills.jpg", "Jinu and Divyamol in the hills"),
+    couple("/images/gallery/steps.jpg", "Jinu and Divyamol on the stone steps"),
+    couple("/images/gallery/portrait-02.jpg", "Jinu and Divyamol"),
+    couple("/images/gallery/portrait-03.jpg", "Jinu and Divyamol"),
+    couple("/images/gallery/portrait-04.jpg", "Jinu and Divyamol"),
   ],
 };

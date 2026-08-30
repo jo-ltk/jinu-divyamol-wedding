@@ -16,8 +16,8 @@ export function SiteFooter() {
           <p>{wedding.reception.shortPlace}</p>
         </div>
         <div>
-          <span className="label">Scripture</span>
-          <p>{wedding.verse.reference}</p>
+          <span className="label">{wedding.verse.reference}</span>
+          <p className="malayalam" lang="ml">{wedding.verse.malayalam}</p>
         </div>
       </div>
     </footer>

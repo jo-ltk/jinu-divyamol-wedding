@@ -4,7 +4,6 @@ import Image from "next/image";
 import { useState } from "react";
 import { HeadingReveal } from "@/components/heading-reveal";
 import { Ornament } from "@/components/ornament";
-import { PlaceholderBadge } from "@/components/placeholder-badge";
 import { images } from "@/content/wedding";
 
 export function Gallery() {
@@ -16,7 +15,7 @@ export function Gallery() {
       <header className="section-head" data-reveal>
         <p className="label">Captured moments</p>
         <HeadingReveal className="section-title">Gallery</HeadingReveal>
-        <p className="lede">Temporary editorial photography, awaiting the couple’s own moments.</p>
+        <p className="lede">A few frames from their shoot together.</p>
         <Ornament />
       </header>
 
@@ -31,7 +30,6 @@ export function Gallery() {
             aria-label={`View ${image.alt}`}
           >
             <Image src={image.src} alt={image.alt} fill sizes="82vw" />
-            <PlaceholderBadge />
           </button>
         ))}
       </div>

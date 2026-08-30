@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=Outfit:wght@300;400;500;600&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=Noto+Sans+Malayalam:wght@400;500&family=Outfit:wght@300;400;500;600&display=swap");
 @import "tailwindcss";
 
 :root {
@@ -55,9 +55,11 @@ img { object-fit: cover; }
 .word { display: inline-block; opacity: 0; }
 
 .site-nav {
+  display: none;
   position: fixed; z-index: 40; top: 0; left: 0; right: 0;
-  display: flex; align-items: center; justify-content: space-between;
+  align-items: center; justify-content: space-between;
   padding: 1rem 1.25rem; color: #fff;
+  background: transparent;
   transition: transform 420ms var(--ease-out), background 280ms ease, color 280ms ease;
 }
 .site-nav.is-scrolled { background: color-mix(in srgb, var(--ivory) 92%, transparent); }
@@ -76,22 +78,53 @@ img { object-fit: cover; }
 .nav-dock a { padding: 0.55rem 0.1rem; opacity: 0.55; }
 .nav-dock a.is-active { opacity: 1; color: var(--mustard-soft); }
 
-.hero { position: relative; display: grid; min-height: 100svh; place-items: end center; overflow: hidden; color: #fff; }
-.hero-slide { position: absolute; inset: 0; opacity: 0; transition: opacity 1.4s ease; }
-.hero-slide img { object-fit: cover; }
-.hero-slide.is-active { opacity: 1; }
-.hero-slide img { transform: scale(1.08); }
-.hero-shade {
-  position: absolute; inset: 0;
-  background: linear-gradient(to top, rgba(18, 14, 10, 0.88) 0%, rgba(18, 14, 10, 0.25) 48%, transparent 100%);
+.hero { position: relative; display: grid; min-height: 100svh; place-items: end stretch; overflow: hidden; color: #fff; background: #0c0a08; }
+.hero-slide { position: absolute; inset: 0; opacity: 0; transition: opacity 1.35s cubic-bezier(0.23, 1, 0.32, 1); }
+.hero-slide.is-active { opacity: 1; z-index: 1; }
+.hero-slide img { object-fit: cover; object-position: center 46%; transform: scale(1.06); }
+.hero-slide.is-active img { animation: ken 7.2s cubic-bezier(0.23, 1, 0.32, 1) forwards; }
+@keyframes ken {
+  from { transform: scale(1.08); }
+  to { transform: scale(1); }
 }
-.hero-copy { position: relative; z-index: 2; width: min(92vw, 40rem); padding: 0 1.25rem 6.5rem; text-align: center; }
-.hero-title { font-size: clamp(2.8rem, 12vw, 5.5rem); color: #fffdf6; }
-.hero-line { width: 7rem; height: 1px; margin: 1.1rem auto 0; background: color-mix(in srgb, var(--mustard) 70%, white); transform-origin: center; }
-.hero-copy .venue-line { margin-top: 0.45rem; font-size: 0.78rem; letter-spacing: 0.18em; text-transform: uppercase; opacity: 0.8; }
-.hero-scroll { position: absolute; z-index: 2; left: 50%; bottom: 1.4rem; display: flex; align-items: center; gap: 0.55rem; transform: translateX(-50%); font-size: 0.62rem; letter-spacing: 0.16em; text-transform: uppercase; }
-.hero-scroll b { display: grid; width: 1.85rem; height: 1.85rem; place-items: center; border: 1px solid #ffffff88; border-radius: 50%; }
-
+.hero-shade {
+  position: absolute; inset: 0; z-index: 2; pointer-events: none;
+  background:
+    linear-gradient(to top, rgba(8, 6, 4, 0.78) 0%, rgba(8, 6, 4, 0.12) 38%, transparent 62%),
+    radial-gradient(ellipse at center, transparent 40%, rgba(8, 6, 4, 0.35) 100%);
+}
+.hero-grain {
+  position: absolute; inset: 0; z-index: 3; pointer-events: none; opacity: 0.07; mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+.hero-copy { position: relative; z-index: 4; padding: 0 1.35rem 5.75rem; text-align: left; }
+.hero-eyebrow {
+  margin-bottom: 0.55rem; font-size: 0.62rem; font-weight: 500; letter-spacing: 0.28em;
+  text-transform: uppercase; color: #f3e6c4; text-shadow: 0 1px 12px rgba(0, 0, 0, 0.55);
+}
+.hero-title {
+  font-family: "Cormorant Garamond", Georgia, serif; font-size: clamp(2rem, 9vw, 3.1rem);
+  font-weight: 400; letter-spacing: -0.03em; line-height: 0.95; color: #fffaf0;
+  text-shadow: 0 2px 24px rgba(0, 0, 0, 0.45);
+}
+.hero-title em { font-style: italic; font-weight: 400; color: var(--mustard-soft); }
+.hero-date {
+  margin-top: 0.85rem; font-size: 0.68rem; letter-spacing: 0.22em; text-transform: uppercase;
+  color: rgba(255, 250, 240, 0.92); text-shadow: 0 1px 10px rgba(0, 0, 0, 0.5);
+}
+.hero-place {
+  margin-top: 0.3rem; font-size: 0.68rem; letter-spacing: 0.18em; text-transform: uppercase;
+  color: rgba(255, 250, 240, 0.72);
+}
+.hero-ticks {
+  position: absolute; z-index: 4; right: 1.15rem; bottom: 5.6rem;
+  display: flex; flex-direction: column; gap: 0.45rem;
+}
+.hero-ticks button {
+  width: 1.15rem; height: 2px; padding: 0; background: rgba(255, 255, 255, 0.35);
+  transition: background 280ms ease, transform 280ms var(--ease-out);
+}
+.hero-ticks button.is-active { background: var(--mustard-soft); transform: scaleX(1.35); transform-origin: right; }
 .countdown-band { padding: 3.5rem 1.25rem 4rem; background: var(--ink); color: var(--ivory); text-align: center; }
 .countdown-band .section-title { color: #fff; }
 .countdown { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0.6rem; max-width: 28rem; margin: 2rem auto 0; }
@@ -103,9 +136,11 @@ img { object-fit: cover; }
 .invite-lead, .invite-close { font-family: "Cormorant Garamond", Georgia, serif; font-style: italic; line-height: 1.25; }
 .invite-lead { margin: 1.4rem 0 0.8rem; font-size: clamp(1.45rem, 5.5vw, 2.15rem); }
 .invite-close { font-size: clamp(1.7rem, 6.5vw, 2.6rem); }
+.malayalam { font-family: "Noto Sans Malayalam", sans-serif; letter-spacing: 0; line-height: 1.75; }
 .invite blockquote { margin-top: 1.5rem; }
-.invite blockquote p { font-family: "Cormorant Garamond", Georgia, serif; font-size: 1.15rem; font-style: italic; color: var(--brown); }
-.invite cite { display: block; margin-top: 0.7rem; font-style: normal; font-size: 0.62rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--mustard); }
+.invite cite { display: block; margin-bottom: 0.9rem; font-style: normal; font-size: 0.62rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--mustard); }
+.invite .malayalam { font-size: clamp(1.15rem, 4.4vw, 1.55rem); color: var(--ink); }
+.invite .verse-en { margin-top: 0.85rem; font-family: "Cormorant Garamond", Georgia, serif; font-size: 1.15rem; font-style: italic; color: var(--brown); }
 
 .events, .story-section, .families, .travel, .venues, .gallery { padding: 4.25rem 1.25rem; }
 .events { background: var(--beige); }
@@ -115,6 +150,14 @@ img { object-fit: cover; }
 .events time { display: block; font-size: 0.78rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--brown); }
 .events strong { display: block; margin: 0.2rem 0 0.35rem; font-family: "Cormorant Garamond", Georgia, serif; font-size: 1.7rem; font-weight: 400; }
 .events p { font-size: 0.92rem; color: var(--brown); }
+.event-photos { margin-top: 2.4rem; }
+.event-photos .label { margin-bottom: 0.9rem; }
+.event-rail {
+  display: flex; gap: 0.75rem; overflow-x: auto; scroll-snap-type: x mandatory;
+  margin: 0 -1.25rem; padding: 0 1.25rem 0.4rem; -webkit-overflow-scrolling: touch;
+}
+.event-rail figure { position: relative; flex: 0 0 78vw; max-width: 20rem; aspect-ratio: 3/4; margin: 0; overflow: hidden; scroll-snap-align: center; }
+.swipe-hint.dark { color: var(--brown); opacity: 0.7; }
 
 .story-block { display: grid; gap: 1.5rem; margin-bottom: 3.2rem; }
 .story-media { position: relative; min-height: 22rem; overflow: hidden; }
@@ -173,6 +216,7 @@ footer { padding: 4.5rem 1.25rem 2.5rem; background: #14110e; color: var(--ivory
 .footer-date { letter-spacing: 0.22em; text-transform: uppercase; font-size: 0.72rem; color: var(--mustard-soft); }
 .footer-meta { display: grid; gap: 1.4rem; margin-top: 2.5rem; padding-top: 1.6rem; border-top: 1px solid #ffffff12; }
 .footer-meta p { margin-top: 0.35rem; font-family: "Cormorant Garamond", Georgia, serif; font-size: 1.15rem; }
+.footer-meta .malayalam { font-family: "Noto Sans Malayalam", sans-serif; font-size: 0.95rem; line-height: 1.7; color: #f3ead8; }
 
 @media (hover: hover) and (pointer: fine) {
   .button:hover { background: var(--ink); color: #fff; }
@@ -183,10 +227,12 @@ footer { padding: 4.5rem 1.25rem 2.5rem; background: #14110e; color: var(--ivory
 @media (min-width: 800px) {
   body { padding-bottom: 0; }
   .nav-dock { display: none; }
+  .site-nav { display: flex; }
   .nav-desktop { display: flex; }
   .site-nav { padding: 1.2rem 4vw; }
   .site-nav.is-scrolled { color: var(--ink); }
-  .hero-copy { padding-bottom: 5rem; }
+  .hero-copy { padding: 0 4vw 4.5rem; }
+  .hero-ticks { right: 4vw; bottom: 4.5rem; }
   .invite, .events, .story-section, .families, .travel, .venues, .gallery, .countdown-band { padding: 6.5rem 4vw; }
   .story-block { grid-template-columns: 1.1fr 0.9fr; align-items: center; gap: 3.5rem; }
   .story-block-alt { grid-template-columns: 0.9fr 1.1fr; }
@@ -194,6 +240,7 @@ footer { padding: 4.5rem 1.25rem 2.5rem; background: #14110e; color: var(--ivory
   .family-grid, .travel-grid { grid-template-columns: 1fr 1fr; gap: 3rem; }
   .travel-grid { grid-template-columns: repeat(3, 1fr); }
   .gallery-tile { flex-basis: 22rem; }
+  .event-rail figure { flex-basis: 18rem; }
   .venue-card { display: grid; grid-template-columns: 1.15fr 0.85fr; }
   .venue-map { height: auto; min-height: 22rem; }
   .footer-meta { grid-template-columns: repeat(3, 1fr); }
@@ -202,6 +249,7 @@ footer { padding: 4.5rem 1.25rem 2.5rem; background: #14110e; color: var(--ivory
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   .hero-slide, .gallery-tile img, .site-nav { transition: none !important; }
-  [data-reveal], .hero-eyebrow, .hero-meta, .word { opacity: 1 !important; transform: none !important; visibility: visible !important; }
+  .hero-slide.is-active img { animation: none !important; transform: none !important; }
+  [data-reveal], .hero-eyebrow, .hero-title, .hero-date, .hero-place, .hero-ticks, .word { opacity: 1 !important; transform: none !important; visibility: visible !important; }
   [data-image-reveal] { clip-path: none !important; }
 }
