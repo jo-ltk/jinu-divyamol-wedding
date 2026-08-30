@@ -94,8 +94,6 @@ export const images = {
     couple("/images/hero/03.jpg", "Jinu and Divyamol at the falls"),
   ],
   story: [
-    couple("/images/story/01.jpg", "Jinu and Divyamol sharing a quiet moment together"),
-    couple("/images/story/02.jpg", "Jinu and Divyamol smiling together"),
     couple("/images/story/03.jpg", "Jinu and Divyamol in an affectionate embrace"),
   ],
   registration: [

@@ -27,10 +27,7 @@ export function Story() {
         ))}
       </div>
 
-      <article className="story-block">
-        <div className="story-media" data-image-reveal>
-          <Image src={images.story[0].src} alt={images.story[0].alt} fill sizes="(max-width: 800px) 100vw, 55vw" data-parallax />
-        </div>
+      <article className="story-block story-block-text">
         <div className="story-copy" data-reveal>
           <p className="label">01 · {wedding.story.visitTitle}</p>
           <h3>{wedding.story.visitTitle}</h3>
@@ -49,7 +46,7 @@ export function Story() {
           <p>{wedding.story.official}</p>
         </div>
         <div className="story-media" data-image-reveal>
-          <Image src={images.story[2].src} alt={images.story[2].alt} fill sizes="(max-width: 800px) 100vw, 55vw" data-parallax />
+          <Image src={images.story[0].src} alt={images.story[0].alt} fill sizes="(max-width: 800px) 100vw, 55vw" data-parallax />
         </div>
       </article>
     </section>
