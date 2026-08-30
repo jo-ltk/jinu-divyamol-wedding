@@ -1,19 +1,14 @@
 import { readFile } from "node:fs/promises";
 import { join } from "node:path";
 import { ImageResponse } from "next/og";
-import { wedding } from "@/content/wedding";
 
-export const alt = `${wedding.couple.display} wedding invitation logo`;
+export const alt = "Jinu and Divyamol wedding invitation with monogram, names, and date";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
-const brand = {
-  cream: "#f7f3ea",
-} as const;
-
 export default async function OpenGraphImage() {
-  const logo = await readFile(join(process.cwd(), "public/images/brand/wedding-logo.jpg"));
-  const logoSrc = `data:image/jpeg;base64,${logo.toString("base64")}`;
+  const preview = await readFile(join(process.cwd(), "public/images/og-preview.jpg"));
+  const previewSrc = `data:image/jpeg;base64,${preview.toString("base64")}`;
 
   return new ImageResponse(
     (
@@ -24,19 +19,19 @@ export default async function OpenGraphImage() {
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
-          background: brand.cream,
-          padding: "12px 24px",
+          overflow: "hidden",
+          background: "#f7f3ea",
         }}
       >
         <img
-          src={logoSrc}
+          src={previewSrc}
           alt=""
-          width={606}
-          height={606}
+          width={1200}
+          height={630}
           style={{
-            width: 606,
-            height: 606,
-            objectFit: "contain",
+            width: "100%",
+            height: "100%",
+            objectFit: "cover",
           }}
         />
       </div>

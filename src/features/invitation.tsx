@@ -20,7 +20,7 @@ export function Invitation() {
             {wedding.verse.malayalam}
           </p>
           <p className="verse-en">
-            10 {wedding.verse.english}
+            {wedding.verse.english}
           </p>
         </blockquote>
       </div>

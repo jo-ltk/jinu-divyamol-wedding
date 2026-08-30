@@ -13,13 +13,30 @@ export function Story() {
         <p className="lede">{wedding.story.opening}</p>
       </header>
 
+      <div className="story-portraits" aria-label="Jinu and Divyamol together">
+        {images.story.map((image) => (
+          <figure key={image.src} className="story-portrait" data-image-reveal>
+            <Image
+              src={image.src}
+              alt={image.alt}
+              fill
+              sizes="(max-width: 800px) 72vw, 22vw"
+              data-parallax
+            />
+          </figure>
+        ))}
+      </div>
+
       <article className="story-block">
         <div className="story-media" data-image-reveal>
           <Image src={images.story[0].src} alt={images.story[0].alt} fill sizes="(max-width: 800px) 100vw, 55vw" data-parallax />
         </div>
         <div className="story-copy" data-reveal>
-          <p className="label">01 · First meet</p>
-          <h3>First meet</h3>
+          <p className="label">01 · {wedding.story.visitTitle}</p>
+          <h3>{wedding.story.visitTitle}</h3>
+          <p className="story-malayalam malayalam" lang="ml">
+            {wedding.story.visitMalayalam}
+          </p>
           <p>{wedding.story.visit}</p>
           <blockquote>{wedding.story.visitQuote}</blockquote>
         </div>
@@ -32,7 +49,7 @@ export function Story() {
           <p>{wedding.story.official}</p>
         </div>
         <div className="story-media" data-image-reveal>
-          <Image src={images.story[1].src} alt={images.story[1].alt} fill sizes="(max-width: 800px) 100vw, 55vw" data-parallax />
+          <Image src={images.story[2].src} alt={images.story[2].alt} fill sizes="(max-width: 800px) 100vw, 55vw" data-parallax />
         </div>
       </article>
     </section>

@@ -38,15 +38,19 @@ export const wedding = {
     close: "as we begin our life together in marriage.",
   },
   story: {
-    opening: "Every beautiful story has a beginning. Ours began with a simple visit that became a very special milestone.",
-    visit: "When Divyamol first came to Jinu's home, it became a memorable moment in their journey.",
-    visitQuote: "That day was more than just a visit.",
+    opening:
+      "Every beautiful story has chapters that change everything. Ours took a decisive turn when our families came together.",
+    visitTitle: "The day our families met",
+    visitMalayalam: "രണ്ട് കുടുംബങ്ങൾ ഒന്നായ ദിവസം",
+    visit:
+      "Jinu and Divyamol had met before, but when Divyamol visited Jinu's home with both families present, it became the occasion where their relationship was officially fixed.",
+    visitQuote: "That day was when two families became one.",
     official: "That was the day their relationship was officially fixed, marking the beginning of a beautiful new chapter.",
   },
   family: {
-    bride: ["Mr. Baby Francis", "Mrs. Gracy Baby"],
+    bride: { father: "Baby Francis", mother: "Gracy Baby" },
     sister: "Navya Baby",
-    groom: ["Dolly Albert", "M X Albert"],
+    groom: { father: "M X Albert", mother: "Dolly Albert" },
   },
   timeline: [
     { date: "August 19, 2026", event: "Registration", note: "The official beginning of this chapter." },
@@ -90,11 +94,13 @@ export const images = {
     couple("/images/hero/03.jpg", "Jinu and Divyamol at the falls"),
   ],
   story: [
-    couple("/images/story/first-meet.jpg", "Jinu and Divyamol at their first meet"),
-    couple("/images/gallery/waterfall.jpg", "Jinu and Divyamol together"),
+    couple("/images/story/01.jpg", "Jinu and Divyamol sharing a quiet moment together"),
+    couple("/images/story/02.jpg", "Jinu and Divyamol smiling together"),
+    couple("/images/story/03.jpg", "Jinu and Divyamol in an affectionate embrace"),
   ],
   registration: [
-    couple("/images/registration/office.jpg", "Jinu and Divyamol exchanging garlands at the registration office"),
+    couple("/images/registration/01.jpg", "Jinu and Divyamol exchanging garlands at the registration office"),
+    couple("/images/registration/office.jpg", "Jinu and Divyamol at the registration office"),
     couple("/images/registration/together.jpg", "Jinu and Divyamol after registration"),
     couple("/images/registration/portrait.jpg", "Jinu and Divyamol on their registration day"),
     couple("/images/registration/walk.jpg", "Jinu and Divyamol walking after registration"),

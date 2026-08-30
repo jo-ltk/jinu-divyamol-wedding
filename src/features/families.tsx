@@ -11,18 +11,34 @@ export function Families() {
         <Ornament />
       </header>
       <div className="family-grid">
-        <div data-reveal>
+        <article className="family-card" data-reveal>
           <p className="label">The bride</p>
-          <h3>{wedding.couple.bride}</h3>
-          <p className="parents">{wedding.family.bride.join(" & ")}</p>
-          <small>Sister</small>
-          <p>{wedding.family.sister}</p>
-        </div>
-        <div data-reveal>
+          <h3 className="family-name">{wedding.couple.bride}</h3>
+          <div className="family-lineage">
+            <span className="family-relation">Daughter of</span>
+            <span className="family-parent">{wedding.family.bride.father}</span>
+            <span className="family-amp" aria-hidden="true">
+              &
+            </span>
+            <span className="family-parent">{wedding.family.bride.mother}</span>
+          </div>
+          <div className="family-sibling">
+            <small>Sister</small>
+            <p>{wedding.family.sister}</p>
+          </div>
+        </article>
+        <article className="family-card" data-reveal>
           <p className="label">The groom</p>
-          <h3>{wedding.couple.groom}</h3>
-          <p className="parents">{wedding.family.groom.join(" & ")}</p>
-        </div>
+          <h3 className="family-name">{wedding.couple.groom}</h3>
+          <div className="family-lineage">
+            <span className="family-relation">Son of</span>
+            <span className="family-parent">{wedding.family.groom.father}</span>
+            <span className="family-amp" aria-hidden="true">
+              &
+            </span>
+            <span className="family-parent">{wedding.family.groom.mother}</span>
+          </div>
+        </article>
       </div>
     </section>
   );

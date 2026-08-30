@@ -21,11 +21,20 @@ export const metadata: Metadata = {
     locale: "en_IN",
     title: site.title,
     description: site.description,
+    images: [
+      {
+        url: "/images/og-preview.jpg",
+        width: 1672,
+        height: 941,
+        alt: "Jinu and Divyamol wedding invitation — September 2, 2026",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
     title: site.title,
     description: site.shortDescription,
+    images: ["/images/og-preview.jpg"],
   },
   alternates: {
     canonical: site.url,
